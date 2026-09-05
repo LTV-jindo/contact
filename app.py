@@ -13,7 +13,7 @@ def main():
         try:
             requests.post(
                 DISCORD_OPEN,
-                json={"content": "🔔 Someone need contact!"},
+                json={"content": "🔔 Someone openned your website!"},
                 timeout=5
             )
         except:
