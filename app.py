@@ -5,20 +5,19 @@ import os
 app = Flask(__name__)
 
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK")
-DISCORD_OPEN = os.environ.get("DISCORD_OPEN")
 
 @app.route("/")
 def main():
-    if DISCORD_OPEN:
+    if DISCORD_WEBHOOK:
         try:
             requests.post(
-                DISCORD_OPEN,
-                json={"content": "🔔 Someone openned your website!"},
+                DISCORD_WEBHOOK,
+                json={"content": "🏠 Someone opened the main website!"},
                 timeout=5
             )
-        except:
+        except requests.RequestException:
             pass
-        
+
     return render_template("main.html")
 
 @app.route("/contact")
